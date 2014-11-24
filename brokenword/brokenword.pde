@@ -7,6 +7,7 @@ void setup () {
   size (600, 200);
   f = createFont("AktivGrotesk-Regular-60", 60, true);
   pg = createGraphics (600, 200);
+  background (255);
 }
 
 void draw () {
@@ -17,14 +18,19 @@ void draw () {
   pg.textAlign (CENTER);
   pg.text(typed, width/2, 400);
   pg.text(words, width/2, 125);
-  pg.endDraw();
-  imageMode(CENTER);
-  image(pg, width/2, height/2);
 }
 
 void keyPressed () {
   if (key == '\n' ) {
+    
+    
     words = typed;
+    pg.save ("words.tga");
+    pg.endDraw();
+    imageMode (CENTER);
+    tint(0,0,0,0);
+    image(pg, width/2, height/2);
+    
     typed = "";
   } else {
     typed = typed + key;
