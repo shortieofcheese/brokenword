@@ -3,6 +3,7 @@
 
 PointCloud pc;
 PImage  testImg;
+PImage  nycImg;
 boolean showImage = false; 
 boolean doPause = false;
 String filename = "brokenword.jpg";
@@ -18,11 +19,12 @@ void setup ()
 {
   size (600, 200, P3D); //P3D
   testImg = loadImage ("brokenword.jpg");
+  //nycImg = loadImage ("nyc.jpg");
   f = createFont("AktivGrotesk-Regular-60", 60, true);
   pg = createGraphics (600, 200);
-  
-  
-  pc = new PointCloud (3000);  //makes a new cloud of points with (x) amount of points within it
+
+
+  pc = new PointCloud (6000);  //makes a new cloud of points with (x) amount of points within it
   float cx, cy; // current X value and current y value
   while (pc.p.length <= pc.length)
   {
@@ -37,19 +39,19 @@ void draw ()
 { 
   background (255);
   pc.draw();
-  
+
   pg.beginDraw();
   pg.background (255);
   pg.textFont(f);
   pg.fill (0);
-  pg.rect (0,0,600,1);
-  pg.rect (0,199,600,1);
-  pg.rect (0,0,1,200);
-  pg.rect (599,0,1,200);
+  pg.rect (0, 0, 600, 1);
+  pg.rect (0, 199, 600, 1);
+  pg.rect (0, 0, 1, 200);
+  pg.rect (599, 0, 1, 200);
   pg.textAlign (CENTER);
   pg.text(typed, width/2, 125);
- 
- //pg.text(words, width/2, 125);
+
+  //pg.text(words, width/2, 125);
 
 
   if (pc.paused) //once the particles all reach they pause
@@ -62,12 +64,12 @@ void draw ()
 void updatePointCloud (PImage img) //takes image and uses it to redraw the image based on targets
 {
   float [] [] target = (float[] []) findTargets (pc.p.length, img); //tells the points what to do after they are paused
-  pc.updateSimple (target); //update position of particles and unpause 
+  pc.updateSimple (target); //update position of particles and unpause
 }
 
 void keyPressed ()
 {
-    if (key == '\n' ) {
+  if (key == '\n' ) {
     words = typed;
     pg.save ("/data/words.jpg");
     pg.endDraw();
@@ -89,5 +91,8 @@ void keyPressed ()
     else loop(); //starts the draw loop again
   }
   if (keyCode == '2') showImage = !showImage; // switches the bool to show the image preview
+  if (keyCode == '3') {
+    testImg = loadImage ("NYC.jpg");
+  }
 }
 
