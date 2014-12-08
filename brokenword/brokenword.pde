@@ -1,6 +1,3 @@
-/* OpenProcessing Tweak of *@*http://www.openprocessing.org/sketch/81905*@* */
-/* !do not delete the line above, required for linking your tweak if you upload again */
-
 PointCloud pc;
 PImage  testImg;
 PImage  nycImg;
